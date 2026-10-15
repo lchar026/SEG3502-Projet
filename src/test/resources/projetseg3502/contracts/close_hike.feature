@@ -1,11 +1,18 @@
 # language: fr
-Fonctionnalité: Clôture d'une randonnée
+Fonctionnalité: Fermeture d'une randonnée
 
-  Scénario: Clôture automatique ou manuelle d'une randonnée terminée
-    Étant donné qu'une randonnée "Sortie Mont-Tremblant" a eu lieu hier
-    Quand l'administrateur demande à clôturer la randonnée "Sortie Mont-Tremblant"
-    Alors la randonnée est archivée et le statut des participants est mis à jour
+  Scénario: Fermeture automatique à la date limite d'inscription
+    Étant donné qu'une randonnée "Rando Gatineau" est ouverte
+    Et que sa date limite d'inscription est atteinte
+    Quand le système ferme la randonnée
+    Alors le statut de la randonnée passe à "fermée"
 
-  # TODO: Scénario — fermeture automatique à la date limite d'inscription
-  # TODO: Scénario — tentative d'inscription après fermeture (refusée)
-  # TODO: Scénario — tentative d'annulation après fermeture (refusée)
+  Scénario: Tentative d'inscription après fermeture
+    Étant donné qu'une randonnée "Rando Gatineau" a le statut "fermée"
+    Quand un randonneur tente de s'y inscrire
+    Alors l'inscription est refusée
+
+  Scénario: Tentative d'annulation après fermeture
+    Étant donné qu'une randonnée "Rando Gatineau" a le statut "fermée"
+    Quand un randonneur tente d'annuler son inscription
+    Alors l'annulation est refusée
